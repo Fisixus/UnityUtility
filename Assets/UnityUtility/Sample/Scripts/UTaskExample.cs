@@ -1,11 +1,25 @@
+using System;
 using UnityEngine;
+using UnityUtility.Events.ScriptableObjects;
 using UnityUtility.UTasks;
 
 namespace UnityUtility.Sample.Scripts
 {
     public class UTaskExample : MonoBehaviour
     {
-        void Start()
+        [SerializeField] private VoidEventChannelSO m_StartSO;
+
+        private void Awake()
+        {
+            m_StartSO.OnEventRaised += StartUTasks;
+        }
+
+        private void OnDestroy()
+        {
+            m_StartSO.OnEventRaised -= StartUTasks;
+        }
+
+        private void StartUTasks()
         {
             //It will wait seconds that input indicated, then it'll run the Action
             UTask.Wait(5f).Do(() =>
