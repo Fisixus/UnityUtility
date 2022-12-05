@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace UnityUtility.Events.ScriptableObjects
+namespace UnityUtility.Events.ScriptableObjects.T
 {
     /// <summary>
     /// This class is used for Events that have one int argument.
@@ -9,12 +8,8 @@ namespace UnityUtility.Events.ScriptableObjects
     /// </summary>
 
     [CreateAssetMenu(menuName = "Events/Int Event Channel")]
-    public class IntEventChannelSO : ScriptableObject
+    public class IntEventChannelSO : TEventChannelSO<int>
     {
-        public UnityAction<int> OnEventRaised;
-        public void RaiseEvent(int value)
-        {
-            OnEventRaised.Invoke(value);
-        }
+        
     }
 }
