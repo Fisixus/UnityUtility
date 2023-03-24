@@ -1,2 +1,2 @@
 # UnityUtility
-Very useful features that have ready for developing
+Handy features that have ready for development.
