@@ -119,7 +119,9 @@ namespace UnityUtility.UTasks
         private int repeatCount;
         private float repeatGap;
 
-        private float repeatDuration; 
+        private float repeatDuration;
+
+        private bool isInfinite;
         
         public RepeatUpdater(){}
         public RepeatUpdater(int repeatCount, float repeatGap)
@@ -128,6 +130,8 @@ namespace UnityUtility.UTasks
             this.repeatGap = repeatGap;
             
             repeatDuration = 0f;
+
+            if (repeatCount == -1) isInfinite = true;
         }
 
         private void RepeatCount(UTask uT)
@@ -143,6 +147,12 @@ namespace UnityUtility.UTasks
 
         public void Update(UTask uT)
         {
+            if (isInfinite)
+            {
+                RepeatCount(uT);
+                return;
+            }
+            
             if (repeatCount < 0)
             {
                 RepeatCount(uT);
